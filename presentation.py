@@ -67,7 +67,7 @@ train_stdev = []
 test_train_diff = []
 test_train_stdev_diff = []
 
-random_states = [i for i in range(0,100)]
+random_states = [i for i in range(0,500)]
 k_vals = [i for i in range(num_itr)]
 
 for i in range(1, len(data[0].columns) + 1):
