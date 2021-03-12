@@ -55,6 +55,7 @@ def accuracy_calc(cols, y, test_ratio, which, random_state=60):
 
 rnd_num = 55
 test_ratio = 0.5
+random_st_num = 100
 num_itr = 1
 
 random.seed(rnd_num)
@@ -67,7 +68,7 @@ train_stdev = []
 test_train_diff = []
 test_train_stdev_diff = []
 
-random_states = [i for i in range(0,500)]
+random_states = [i for i in range(0,100)]
 k_vals = [i for i in range(num_itr)]
 
 for i in range(1, len(data[0].columns) + 1):
@@ -117,7 +118,7 @@ plt.xlabel("Number of features")
 plt.ylabel("Accuracy")
 plt.legend()
 #dont forget to change this
-plt.savefig('train_test_acc_{}_states.png'.format(len(random_states)), dpi=100, transparent=True)
+plt.savefig('train_test_acc_{}_states_{}test_ratio.png'.format(len(random_states), test_ratio), dpi=100, transparent=True)
 
 plt.clf()
 plt.cla()
@@ -131,7 +132,7 @@ plt.xlabel("Number of features")
 plt.ylabel("Standard Deviation")
 plt.legend()
 #dont forget to change this
-plt.savefig('sample_dev_test_train{}_states.png'.format(len(random_states)), dpi=100, transparent=True)
+plt.savefig('sample_dev_test_train{}_states_{}test_ratio.png'.format(len(random_states), test_ratio), dpi=100, transparent=True)
 
 plt.clf()
 plt.cla()
