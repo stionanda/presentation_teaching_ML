@@ -54,7 +54,7 @@ def accuracy_calc(cols, y, test_ratio, which, random_state=60):
 #first run
 
 rnd_num = 55
-test_ratio = 0.5
+test_ratio = 0.8
 random_st_num = 100
 num_itr = 1
 
