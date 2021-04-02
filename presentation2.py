@@ -146,14 +146,16 @@ def plot_quartiles(df_total, boundries, random_st_num, test_ratio):
     plt.plot(x1, boundries, label = "95% Confidence Boundary")
     plt.title("Accuracies with {} counts per feature, {} test ratio".format(random_st_num, test_ratio))
 
-    plt.ylim([0, 1])
+    plt.ylim([-0.1, 0.85])
+    plt.xlabel("Number of features")
+    plt.ylabel("Accuracy")
     plt.legend()
     plt.savefig("Accuracies with {} counts per feature, {} test ratio.png".format(random_st_num, test_ratio), dpi=100)
     return print("Success")
 
 #producing graphs
 #test_ratio_array = [0.1, 0.3, 0.5, 0.7, 0.9]
-test_ratio_array = [0.1, 0.3, 0.5, 0.7, 0.8, 0.85, 0.9, 0.95]
+test_ratio_array = [0.1, 0.3, 0.5, 0.7]
 random_st_num = 50
 
 for test_ratio in test_ratio_array:
