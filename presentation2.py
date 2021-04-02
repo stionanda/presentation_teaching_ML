@@ -116,3 +116,6 @@ random_st_num = 50
 for test_ratio in test_ratio_array:
     df_total, test_acc, train_acc, diff_acc, boundries, test_stdev, train_stdev, diff_stdev = calc_graph(test_ratio=test_ratio, random_st_num=random_st_num, num_itr=1)
     plot_quartiles(df_total, boundries, random_st_num, test_ratio)
+    plt.clf()
+    plt.cla()
+    plt.close()
