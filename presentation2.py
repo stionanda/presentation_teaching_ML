@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 import statistics as st
 import random
 import math
-import seaborn as sns; sns.set()
+#import seaborn as sns; sns.set()
 import data_load as dl
 
 def sample_deviation(in_arr):
