@@ -109,6 +109,48 @@ def calc_graph(test_ratio, random_st_num, num_itr):
 
     return df_total, test_acc, train_acc, test_train_acc_diff, boundries, test_stdev, train_stdev, test_train_stdev_diff
 
+#plot
+def plot_quartiles(df_total, boundries, random_st_num, test_ratio):
+    test = df_total.loc[df_total['type_acc'] == 'test']
+    train = df_total.loc[df_total['type_acc'] == 'train']
+    diff = df_total.loc[df_total['type_acc'] == 'diff']
+
+    test_stats = test.groupby(['num_features']).describe()
+    train_stats = train.groupby(['num_features']).describe()
+    diff_stats = diff.groupby(['num_features']).describe()
+
+    x1 = test_stats.index
+    x2 = train_stats.index
+    x3 = diff_stats.index
+
+    medians_test = test_stats[('accuracy', '50%')]
+    medians_test.name = 'accuracy'
+    quartiles1_test = test_stats[('accuracy', '25%')]
+    quartiles3_test = test_stats[('accuracy', '75%')]
+    plt.plot(x1, medians_test, label='Test Accuracy')
+
+    medians_train = train_stats[('accuracy', '50%')]
+    quartiles1_train = train_stats[('accuracy', '25%')]
+    quartiles3_train = train_stats[('accuracy', '75%')]
+    plt.plot(x2, medians_train, label='Train Accuracy')
+
+    medians_diff = diff_stats[('accuracy', '50%')]
+    quartiles1_diff = diff_stats[('accuracy', '25%')]
+    quartiles3_diff = diff_stats[('accuracy', '75%')]
+    plt.plot(x3, medians_diff, label='Test Accuracy')
+
+    plt.fill_between(x1, quartiles1_test, quartiles3_test, alpha=0.3); 
+    plt.fill_between(x2, quartiles1_train, quartiles3_train, alpha=0.3); 
+    plt.fill_between(x3, quartiles1_diff, quartiles3_diff, alpha=0.3); 
+
+    plt.plot(x1, boundries, label = "95% Confidence Boundary")
+    plt.title("Accuracies with {} counts per feature, {} test ratio".format(random_st_num, test_ratio))
+
+    plt.ylim([-0.1, 0.8])
+    plt.legend()
+    plt.savefig("Accuracies with {} counts per feature, {} test ratio.png".format(random_st_num, test_ratio), dpi=100)
+    return print("Success")
+
 #producing graphs
 test_ratio_array = [0.1, 0.3, 0.5, 0.7, 0.9]
 random_st_num = 50
